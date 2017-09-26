@@ -1,0 +1,68 @@
+/* 热门机构 */
+
+.examinationList {
+    height: 500px;
+}
+
+.examinationListImg {
+    height: 150px;
+}
+
+.examinationListImg img {
+    height: 100%;
+    background-size: 100%;
+}
+
+.examinationListAddress {
+    font-size: 12px;
+    text-align: left;
+    display: block;
+}
+
+
+/* 性质 */
+
+.Nature {
+    width: 77px;
+    height: 19px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 30px;
+    letter-spacing: 0px;
+    padding: 2px 5px;
+    border-radius: 15px 15px 15px 15px;
+    border: solid 1px rgba(213, 213, 213, 1);
+}
+
+
+/* 公立三甲 */
+
+.orange {
+    color: #f09028;
+}
+
+
+/* 公立医院 */
+
+.green {
+    color: #0fcf14;
+}
+
+
+/* 私营医院 */
+
+.bule {
+    color: #06b2dd;
+}
+
+.address {
+    width: 125px;
+    height: 20px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 30px;
+    letter-spacing: 0px;
+    color: #a7acaf;
+}
