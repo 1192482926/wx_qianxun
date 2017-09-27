@@ -87,7 +87,7 @@ export default {
 </script>
 
 <style scoped>
-
+	.Globals{background: #FFFFFF;}
 	i{font-style: normal;}
 	img{box-sizing: border-box;}
 	.el-row{margin-bottom: 0;}

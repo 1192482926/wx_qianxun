@@ -57,7 +57,7 @@
 			</div>
 
             <el-row class="common-bg info-list">
-				<router-link to="">
+				<router-link to="/userinfo">
 					<el-col :span="5" class="info-list-icon">
 						<img src="../../assets/images/personalCenter/personal-data.png" />
 					</el-col>
@@ -79,7 +79,7 @@
 				</router-link>
 			</el-row>
 			<el-row class="common-bg info-list">
-				<router-link to="">
+				<router-link to="/safe">
 					<el-col :span="5" class="info-list-icon">
 						<img src="../../assets/images/personalCenter/Account-security.png" />
 					</el-col>
@@ -129,7 +129,7 @@ export default {
 	.personal-box .personal-name .head-img{height: 100%;text-align: center;}
 	.personal-box .personal-name .head-img .head-img-box{height: 100%;border-radius: 100%;overflow: hidden;margin: 0 auto;}
 	.personal-box .personal-name .head-img .head-img-box img{height: 100%;width: 100%;}
-	.personal-box .personal-name .head-name{font-size: 18px;height: 100%;display: table;overflow: hidden;}
+	.personal-box .personal-name .head-name{font-size: 18px;height: 100%;display: table;overflow: hidden;text-align: left;}
 	.personal-box .personal-name .head-name span{display: table-cell; vertical-align: middle;}
 	/* Globals => personal-box => personal-order*/
 	/* logistics */
@@ -147,7 +147,7 @@ export default {
 	.personal-box .info-list{margin-bottom: 4%;height: 38%;}
 	.personal-box .info-list .info-list-icon{height: 100%;text-align: center;}
 	.personal-box .info-list .info-list-icon img{height: 50%;margin-top: 20%;}
-	.personal-box .info-list .info-list-name{height: 100%;display: table;color: #000;}
+	.personal-box .info-list .info-list-name{height: 100%;display: table;color: #000;text-align: left;}
 	.personal-box .info-list .info-list-name span{display: table-cell;vertical-align: middle;}
 	.personal-box .info-list .info-list-right{height: 100%;text-align: center;}
 	.personal-box .info-list .info-list-right img{height: 20%;margin-top: 81%;}

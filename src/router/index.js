@@ -15,6 +15,11 @@ import register from '@/components/register/register'
 import myorder from '@/components/myorder/myorder'
 import archives from '@/components/archives/archives'
 import about from '@/components/about/about'
+import userinfo from '@/components/personalCenter/userinfo'
+import safe from '@/components/personalCenter/safe' 
+import addArchives from '@/components/archives/addArchives'
+import updateName from '@/components/personalCenter/updateName' 
+
 Vue.use(Router)
 
 export default new Router({
@@ -88,6 +93,23 @@ export default new Router({
         	path: '/about',
             name: 'about',
             component: about
+        },
+        {
+        	path: '/userinfo',
+            name: 'userinfo',
+            component: userinfo
+        },{ 
+        	path: '/safe',
+            name: 'safe',
+            component: safe
+        },{
+        	path: '/addArchives',
+            name: 'addArchives',
+            component: addArchives
+        },{
+        	path: '/updateName',
+            name: 'updateName',
+            component: updateName
         }
     ]
 })

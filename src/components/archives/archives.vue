@@ -4,18 +4,19 @@
 		<el-row class="health-top">
 			<el-col :span="4" class="search-box displayTable">
 				<p class="teableCell">
-					<i class="icon iconfont icon-sousuo-" style="font-size: 36px;"></i>
+					<i class="icon iconfont icon-fanhui" style="font-size: 20px;" @click="$router.go(-1)"></i>
 				</p>
 			</el-col>
 			<el-col :span="16" class="health-name displayTable">
 				<span class="teableCell">健康档案</span>
 			</el-col>
 			<el-col :span="4" class="viewtype-switch displayTable">
-				<p class="teableCell add">添加</p>
+				<p class="teableCell">
+					<router-link to="/addArchives" class="add">添加</router-link>
+				</p>
 			</el-col>
 		</el-row>
-		<div class="content">
-
+		<div class="content"> 
 			<mu-tabs :value="activeTab" @change="handleTabChange" class="muTabs">
 				<mu-tab value="tab1" title="体检报告" />
 				<mu-tab value="tab2" title="就诊病例" />
@@ -111,7 +112,7 @@
 <style>
 	.el-row{margin: 0;padding-bottom: 0;}
 	.Globals {background: #F0F1F1;height: auto;min-height: 100%;} 
-	.health-top .add {font-size: 14px; }
+	.health-top .add {font-size: 14px;color: #000;}
 	/* content */
 	.content .muTabs{background-color: #FFFFFF;color: #202121;}
 	.content .mu-tab-link{color: #202121;}
