@@ -15,21 +15,22 @@
 			</el-row>
 		</div> 
 		<div class="safe-box">
-			<div class="userInfo-list mTop">
-				<el-row>
-					<el-col :span="12" class="userInfo-title">修改手机号</el-col>
-					<el-col :span="12" class="userInfo-val">
-						<router-link to="" class="vals">18202810945</router-link>
-					</el-col>
-				</el-row> 
+			<div class="userInfo-list mTop"> 
+				<router-link to="/updatePhoneNum">
+					<el-row>
+						<el-col :span="12" class="userInfo-title">修改手机号</el-col>
+						<el-col :span="12" class="userInfo-val">
+							<span class="vals">18202810945</span> 
+						</el-col>
+					</el-row> 
+				</router-link>
 			</div>
 			<div class="userInfo-list">
-				<el-row>
-					<el-col :span="12" class="userInfo-title">修改密码</el-col>
-					<el-col :span="12" class="userInfo-val">
-						<router-link to="" class="vals"></router-link>
-					</el-col>
-				</el-row> 
+				<router-link to="/updatePassword">
+					<el-row>
+						<el-col :span="24" class="userInfo-title">修改密码</el-col> 
+					</el-row>
+				</router-link>
 			</div>
 		</div> 
 	</div> 
@@ -44,6 +45,7 @@
 	.safe-box{font-size: 14px;}
 	.safe-box .mTop{margin-top: 10px;}  
 	.safe-box .userInfo-list{background: #FFFFFF;font-size: 16px;border-bottom: 1px solid #F0F1F1;padding: 15px 4%;}
+	.safe-box .userInfo-list a{color: #000000;}
 	.safe-box .userInfo-list .el-col{}
 	.safe-box .userInfo-list .userInfo-title{text-align: left;}
 	.safe-box .userInfo-list .userInfo-val{text-align: right;padding-right: 25px;

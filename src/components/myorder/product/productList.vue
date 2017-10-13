@@ -75,9 +75,10 @@
   }
   /* 公共样式 */
   .productList {
-    width: 100%;
-    height: auto;
+       width: 100%;
+    height: 500px;
     margin-top: 50px;
+    overflow: auto;
   }
   .List {
     background: #fff;
@@ -97,26 +98,26 @@
   }
   .orderNumber .grid-content,
   .el-col {
-    height: 100%;
+    /*height: 100%;*/
   }
   .orderNumber .grid-content {
     line-height: 2;
   }
-  span {
+  /* .examinationList span {
     display: inline-block;
     height: 100%;
     line-height: 40px;
-  }
+  } */
   /* 订单号图标间距 */
   .orderNumber i {
     padding: 0 10px;
   }
   /* 机构名称 */
-  .name {
+  /* .examinationList .name {
     display: block;
     height: 100%;
     line-height: 40px;
-  }
+  } */
   /* 套餐列表 */
   .color {
     color: #202121;

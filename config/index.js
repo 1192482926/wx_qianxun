@@ -5,7 +5,9 @@ module.exports = {
     //打包时使用的配置
     build: {
         //webpack的环境
-        env: require('./prod.env'),
+        env: {
+            NODE_ENV: '"production"'
+        },
         //输入的index.html路径
         index: path.resolve(__dirname, '../dist/index.html'),
         //输出的目标文件夹路径
@@ -33,7 +35,9 @@ module.exports = {
     //开发时使用的配置
     dev: {
         //webpack环境
-        env: require('./dev.env'),
+        env: {
+            NODE_ENV: '"development"'
+        },
         //端口号
         port: 8088,
         //是否自动打开浏览器
@@ -43,13 +47,17 @@ module.exports = {
         //发布路径
         assetsPublicPath: '/',
         //配置代理表
+        proxypath: 'http://192.168.0.116:8080',
         proxyTable: {
             'api': {
-                target: 'http://192.168.0.116:8088/yftj-web/',
+                target: 'http://192.168.0.116:8080',
                 changeOrigin: true,
                 　pathRewrite: { '^/api': '/api' } //这里重写路径/run就代理到对应地址
             }
         },
+        context: [ //代理路径
+            '/yftj-web/',
+        ],
         // CSS Sourcemaps off by default because relative paths are "buggy"
         // with this option, according to the CSS-Loader README
         // (https://github.com/webpack/css-loader#sourcemaps)

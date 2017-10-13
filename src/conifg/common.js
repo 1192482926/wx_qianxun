@@ -8,15 +8,14 @@ export const setStore = (name, data) => {
 }
 
 //取本地数据，只需要名字就可以
-export const getStore = (name) => {
-    if (!name) reutrn;
-    window.localStorage.getItem();
-}
-
-//销毁本地数据
+export const getStore = name => {
+        if (!name) return;
+        return window.localStorage.getItem(name);
+    }
+    //销毁本地数据
 export const destroyStore = (name) => {
     if (!name) reutrn;
-    window.localStorage.removeItem(name);
+    return window.localStorage.removeItem(name);
 }
 
 

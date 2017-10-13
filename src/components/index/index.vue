@@ -2,20 +2,7 @@
 <div>
   <!--轮播和头部开始-->
   <el-row>
-    <!-- 轮播 -->
-    <el-col :span="24">
-      <div class="grid-content bg-purple-dark">
-        <div class="block">
-          <el-carousel trigger="click" height="210px">
-            <el-carousel-item v-for="(item,index) in imgs" :key="index">
-              <img :src="item.img">
-            </el-carousel-item>
-          </el-carousel>
-        </div>
-      </div>
-    </el-col>
-    <!-- 轮播 -->
-    <!-- 头部 -->
+        <!-- 头部 -->
     <el-row :gutter="20" class='headerTop marginAll' :class="!showColorStatus ? 'header' : 'green1' ">
       <el-col :span="6" class='headerSpan '>
         <div class="grid-content bg-purple">
@@ -32,6 +19,20 @@
       </el-col>
     </el-row>
     <!-- 头部 -->
+    <!-- 轮播 -->
+    <el-col :span="24">
+      <div class="grid-content bg-purple-dark">
+        <div class="block">
+          <el-carousel trigger="click" height="210px">
+            <el-carousel-item v-for="(item,index) in imgs" :key="index">
+              <img :src="item.img">
+            </el-carousel-item>
+          </el-carousel>
+        </div>
+      </div>
+    </el-col>
+    <!-- 轮播 -->
+
   </el-row>
   <!--轮播和头部结束-->
 
@@ -77,7 +78,9 @@
       <div class="grid-content bg-purple  tijain">体检套餐</div>
     </el-col>
     <el-col :span="12">
-      <div class="grid-content bg-purple more" style='text-align:right'>查看更多</div>
+      <div class="grid-content bg-purple more" style='text-align:right'>
+          <router-link to='/packageList' >查看更多</router-link>
+         </div>
     </el-col>
   </el-row>
   <!-- 热门套餐列表 -->
@@ -90,7 +93,7 @@
       <div class="grid-content bg-purple  tijain">热门体检机构</div>
     </el-col>
     <el-col :span="12">
-      <div class="grid-content bg-purple more" style='text-align:right'>查看更多</div>
+      <div class="grid-content bg-purple more" style='text-align:right'> <router-link to='/packageList' >查看更多</router-link></div>
     </el-col>
   </el-row>
   <!-- 热门机构列表 -->
@@ -128,7 +131,9 @@ import recommend from '../../assets/recommend.png'
 import hotBuy from '../../assets/hotBuy.png'
 import homeMenu  from '../../assets/css/homeMenu/homeMenu.css'  //套餐css
 import homeOrganization  from '../../assets/css/homeOrganization/homeOrganization.css'  //机构css
-
+  import {
+    packageTypes,hotMechanism
+  } from '../../conifg/getData.js'
 export default {
   name: 'index',
   data() {
@@ -161,12 +166,15 @@ export default {
     pack
   },
   mounted() {
-    this.$nextTick(() => {
-      this.Package();
-      this.Physical();
-      this.examinationItems();
-    })
-    window.addEventListener('scroll', this.showBack)
+      // 项目数据
+      packageTypes().then(res => {
+        this.project = res.medicalType;
+      })
+      /*** 热门机构 */
+      hotMechanism().then(res => {
+        this.examination = res.rows;
+      })
+    document.addEventListener('scroll', this.showBack)
   },
   methods: {
     showBack() {
@@ -188,83 +196,18 @@ export default {
     handleIconClick(ev) {
       console.log(ev);
     },
-    Package() { //获取套餐数据
-      this.$http({
-          method: 'post',
-          url: this.fytjURL + 'medicalplan/rows'
-        })
-        .then((res) => {
-          console.log(res);
-          this.package = res.data.rows;
-        })
-        .catch((error) => {
-          if (error.response) {
-            // 请求已发出，但服务器响应的状态码不在 2xx 范围内
-            console.log(error.response.data);
-            console.log(error.response.status);
-            console.log(error.response.headers);
-          } else {
-            // Something happened in setting up the request that triggered an Error
-            console.log('Error', error.message);
-          }
-          console.log(error.config);
-        })
-    },
-    //获取机构数据
-    Physical() {
-      this.$http({
-          method: 'post',
-          url: this.fytjURL + 'organization/getList'
-        })
-        .then((res) => {
-          this.examination = res.data.rows;
-          // console.log(res);
-        })
-        .catch((error) => {
-          if (error.response) {
-            // 请求已发出，但服务器响应的状态码不在 2xx 范围内
-            console.log(error.response.data);
-            console.log(error.response.status);
-            console.log(error.response.headers);
-          } else {
-            // Something happened in setting up the request that triggered an Error
-            console.log('Error', error.message);
-          }
-          console.log(error.config);
-        })
-    },
-    //获取体检项目数据
-    examinationItems() {
-      this.$http({
-          method: 'post',
-          url: this.fytjURL + 'medicalplan/codeValues'
-        })
-        .then((res) => {
-          this.project = res.data.medicalType;
-          // console.log(res.data.medicalType);
-        })
-        .catch((error) => {
-          if (error.response) {
-            // 请求已发出，但服务器响应的状态码不在 2xx 范围内
-            console.log(error.response.data);
-            console.log(error.response.status);
-            console.log(error.response.headers);
-          } else {
-            // Something happened in setting up the request that triggered an Error
-            console.log('Error', error.message);
-          }
-          console.log(error.config);
-        })
-    }
   }
 }
 </script>
 <style scoped  >
-body,html,#app{
-
-  border:1px red solid;
+#app{
+      border:1px red solid;
 }
-<style >
+body,html{
+  width:0;
+  height: 0;
+}
+
 /* 全局设置margin */
 
  .marginAll {
@@ -317,11 +260,11 @@ input {
 /* 头部 */
 
 .header {
-  position: absolute;
+  position: fixed;
   top: 17px;
   left: 21px;
    right: 0;
-   z-index: 2;
+   z-index: 9;
   color: #fff;
   height: 50px;
 
@@ -529,4 +472,4 @@ input {
 </style>
 
 
-</style>
+

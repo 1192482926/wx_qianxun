@@ -3,31 +3,31 @@
     <haderAll msg='新用户注册'></haderAll>
     <div class='registerInput'>
       <label :class="falgArr ? 'red' :''">
-                    <i class='icon iconfont icon-yonghudenglu'></i>
-                    <input type='text' placeholder='请输入用户名' maxlength='10' v-model='loginName' @focus='inoutFocus($event)'>
-                    <i class='icon iconfont inconPosition' :class="flag ?  'icon-duigou1' : 'icon-cuowutishi' " ></i>
-                    <!-- <i class='icon iconfont icon-cuowutishi'></i> -->
-                </label>
+                      <i class='icon iconfont icon-yonghudenglu'></i>
+                      <input type='text' placeholder='请输入用户名' maxlength='10' v-model='loginName' @focus='inoutFocus($event)'>
+                      <i class='icon iconfont inconPosition' :class="flag ?  'icon-duigou1' : 'icon-cuowutishi' " ></i>
+                      <!-- <i class='icon iconfont icon-cuowutishi'></i> -->
+                  </label>
       <label :class="falgArr ? 'red' :''">
-                    <i class='icon iconfont icon-shouji'></i>
-                    <input type='text' placeholder='请输入手机号码' maxlength='11' v-model='phone'  @focus='inoutFocus($event)'>
-                    <!-- <i class='icon iconfont icon-duigou1'></i> -->
-                    <i class='icon iconfont  inconPosition'  :class=" flagPhone ?  'icon-duigou1' : 'icon-cuowutishi' "></i>
-                </label>
+                      <i class='icon iconfont icon-shouji'></i>
+                      <input type='text' placeholder='请输入手机号码' maxlength='11' v-model='phone'  @focus='inoutFocus($event)'>
+                      <!-- <i class='icon iconfont icon-duigou1'></i> -->
+                      <i class='icon iconfont  inconPosition'  :class=" flagPhone ?  'icon-duigou1' : 'icon-cuowutishi' "></i>
+                  </label>
       <label :class="falgArr ? 'red' :''">
-                    <i class='icon iconfont icon-mima'></i>
-                    <input type='password' placeholder='请输入密码' maxlength='16' ref='password' @focus='inoutFocus($event)' v-model='pass'>
-                    <i class='icon iconfont icon-denglu-buxianshimima' @click='Whether' :class="show ? 'icon-denglu-xianshimima' : 'icon-denglu-buxianshimima' "></i>
-                    <!-- <i class='icon iconfont icon-duigou1'></i> -->
-                    <i class='icon iconfont  inconPosition'  :class=" flagPass ?  'icon-duigou1' : 'icon-cuowutishi' "></i>
-                </label>
+                      <i class='icon iconfont icon-mima'></i>
+                      <input type='password' placeholder='请输入密码' maxlength='16' ref='password' @focus='inoutFocus($event)' v-model='pass'>
+                      <i class='icon iconfont icon-denglu-buxianshimima' @click='Whether' :class="show ? 'icon-denglu-xianshimima' : 'icon-denglu-buxianshimima' "></i>
+                      <!-- <i class='icon iconfont icon-duigou1'></i> -->
+                      <i class='icon iconfont  inconPosition'  :class=" flagPass ?  'icon-duigou1' : 'icon-cuowutishi' "></i>
+                  </label>
       <label>
-                    <i class='icon iconfont icon-yanzhengmima'></i>
-                    <input type='text' placeholder='请输入验证码' maxlength='6'  @focus='inoutFocus($event)' v-model='code'>
-             <a class='getCode' @click='getCode'>获取验证码</a>
-                    <!-- <i class='icon iconfont icon-duigou1'></i> -->
-                    <i class='icon iconfont  inconPosition'  :class=" flagcode ?  'icon-duigou1' : 'icon-cuowutishi' "></i>
-                </label>
+                      <i class='icon iconfont icon-yanzhengmima'></i>
+                      <input type='text' placeholder='请输入验证码' maxlength='6'  @focus='inoutFocus($event)' v-model='code'>
+               <a class='getCode' @click='getCode'>获取验证码</a>
+                      <!-- <i class='icon iconfont icon-duigou1'></i> -->
+                      <i class='icon iconfont  inconPosition'  :class=" flagcode ?  'icon-duigou1' : 'icon-cuowutishi' "></i>
+                  </label>
       <el-row class='loginButton'>
         <el-button type="primary" class='loginS'>登录</el-button>
         <router-link :to="{path:'/login'}">
@@ -209,9 +209,9 @@
   }
 </script>
 
-<style>
+<style lang='scss' scoped>
   .register {
-    padding-top: 20px;
+    width: 100%;
     height: 100%;
   }
 
@@ -245,11 +245,11 @@
   }
 
   .loginButton {
-    margin: 30px 0 0 0;
+    margin: 40px 0 0 0;
   }
 
   #app .loginS {
-    margin: 7px auto;
+    margin: 10px auto;
     width: 80%;
     border-radius: 45px 45px 45px 45px;
     height: 45px;
@@ -305,7 +305,7 @@
     color: #0a85dd;
     position: absolute;
     right: 50px;
-    top: 29px;
+    top: 26px;
   }
 
 
@@ -314,4 +314,46 @@
   #app .red {
     border-bottom: 1px red solid!important;
   }
+
+
+  /* iphone4 */
+
+  @media (device-height:480px) and (-webkit-min-device-pixel-ratio:2) {
+    .headerAll {
+      padding: 20px 0 0 0;
+      /* border:1px red solid; */
+    }
+    .registerInput label {
+      padding: 12px 0 12px 0;
+    }
+    .loginButton {
+      margin: 25px 0 0 0;
+    }
+    .getCode{
+      width: 78px;
+      position: absolute;
+      right: 32px;
+      top: 16px;
+    }
+    .registerInput{
+padding: 0px;
+    }
+    .loginButton{
+margin: 20px 0 0 0;
+    }
+  }
+    @media (device-height:568px) and (-webkit-min-device-pixel-ratio:2) {
+         .registerInput{
+padding: 0px;
+    }
+    .loginButton{
+margin: 20px 0 0 0;
+    }
+    .getCode{
+      width: 78px;
+      position: absolute;
+      right: 30px;
+      top: 26px;
+    }
+    }
 </style>

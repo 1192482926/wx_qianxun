@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="headerAll">
     <h1>{{msg}}</h1>
   <span class='shortLine'></span>
   </div>
@@ -18,6 +18,9 @@ export default{
 
 </script>
 <style scode>
+.headerAll{
+  padding:60px 0 0 0;
+}
 h1 {
   width: 100%;
   text-align: center;
@@ -40,5 +43,11 @@ h1 {
   background-blend-mode: normal, normal;
   box-shadow: 0px 0px 75.2px 4.8px rgba(30, 186, 244, 0.4);
 }
-
+/* iphone4 */
+    @media (device-height:480px) and (-webkit-min-device-pixel-ratio:2) {
+.headerAll{
+   padding:16px 0 0 0;
+  /* border:1px red solid; */
+}
+    }
 </style>

@@ -4,7 +4,6 @@ import index from '@/components/index/index'
 import packageList from '@/components/Package/PackageList'
 import healthProduct from '@/components/healthProduct/healthProduct'
 import personalCenter from '@/components/personalCenter/index'
-import detail from '@/components/Package/detail'
 import SubmitOrder from '@/components/order/SubmitOrder'
 import FillOrder from '@/components/order/FillOrder'
 import organizationDetail from '@/components/detail/organizationDetail'
@@ -16,28 +15,34 @@ import myorder from '@/components/myorder/myorder'
 import archives from '@/components/archives/archives'
 import about from '@/components/about/about'
 import userinfo from '@/components/personalCenter/userinfo'
-import safe from '@/components/personalCenter/safe' 
+import safe from '@/components/personalCenter/safe'
 import addArchives from '@/components/archives/addArchives'
-import updateName from '@/components/personalCenter/updateName' 
-
+import updateName from '@/components/personalCenter/updateName'
+import archivesDetail from '@/components/archives/archivesDetail'
+import updatePhoneNum from '@/components/personalCenter/updatePhoneNum'
+import updatePassword from '@/components/personalCenter/updatePassword'
 Vue.use(Router)
 
 export default new Router({
     mode: 'history',
     routes: [{
             path: '/',
+            component: index
+        }, {
+            path: '/myorder',
             name: 'myorder',
             component: myorder
         }, {
+            path: '/findPassword',
+            name: 'findPassword',
+            component: findPassword
+        },
+        {
             path: '/login',
             name: 'login',
             component: login
         },
-        {
-            path: '/index',
-            name: 'index',
-            component: index
-        },
+
         {
             path: '/packageList',
             name: 'packageList',
@@ -52,12 +57,10 @@ export default new Router({
         {
             path: '/personalCenter',
             name: 'personalCenter',
-            component: personalCenter
-        },
-        {
-            path: '/detail/:id',
-            name: 'detail',
-            component: detail
+            component: personalCenter,
+            meta: {
+                me: true
+            }
         },
         {
             path: '/SubmitOrder',
@@ -70,7 +73,7 @@ export default new Router({
             component: FillOrder
         },
         {
-            path: '/PackageDetail',
+            path: '/PackageDetail/:id',
             name: 'PackageDetail',
             component: PackageDetail
         },
@@ -85,31 +88,43 @@ export default new Router({
             component: register
         },
         {
-        	path: '/archives',
+            path: '/archives',
             name: 'archives',
             component: archives
         },
         {
-        	path: '/about',
+            path: '/about',
             name: 'about',
             component: about
         },
         {
-        	path: '/userinfo',
+            path: '/userinfo',
             name: 'userinfo',
             component: userinfo
-        },{ 
-        	path: '/safe',
+        }, {
+            path: '/safe',
             name: 'safe',
             component: safe
-        },{
-        	path: '/addArchives',
+        }, {
+            path: '/addArchives',
             name: 'addArchives',
             component: addArchives
-        },{
-        	path: '/updateName',
+        }, {
+            path: '/updateName',
             name: 'updateName',
             component: updateName
+        }, {
+            path: '/archivesDetail',
+            name: 'archivesDetail',
+            component: archivesDetail
+        }, {
+            path: '/updatePhoneNum',
+            name: 'updatePhoneNum',
+            component: updatePhoneNum
+        }, {
+            path: '/updatePassword',
+            name: 'updatePassword',
+            component: updatePassword
         }
     ]
 })

@@ -15,6 +15,11 @@ import VueCookie from 'vue-cookie' // cookie
 import BackToTop from 'vue-backtotop' //回到顶部
 import MuseUI from 'muse-ui'
 import 'muse-ui/dist/muse-ui.css'
+// 图片懒加载
+// import VueLazyComponent from '@xunlei/vue-lazy-component'
+// import Vue from 'vue'
+// Vue.use(VueLazyComponent)
+//
 Vue.use(MuseUI)
     //提示
 import 'vue-instant/dist/vue-instant.css'
@@ -92,13 +97,14 @@ Vue.use(VeeValidate, veeConfig)
     //图片懒加载
 Vue.use(Element)
 Vue.use(VueLazyload, {
-    error: 'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=2154282658,1509265881&fm=26&gp=0.jpg', //这个是请求失败后显示的图片
-    loading: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1503986217203&di=bd834008e6f4d93c6bb53ba6130f2128&imgtype=0&src=http%3A%2F%2Fwww.xjsheying.com%2Fqqwebhimgs%2Fuploads%2Fbd4321249.jpg', //这个是加载的loading过渡效果
+    error: 'http://www.cunshang.net/wp-content/themes/Loostrive/images/noimage.gif', //这个是请求失败后显示的图片
+    loading: 'http://www.cunshang.net/wp-content/themes/Loostrive/images/noimage.gif', //这个是加载的loading过渡效果
     try: 2 // 这个是加载图片数量
 })
 new Vue({
     el: '#app',
     router,
     template: '<App/>',
-    components: { App }
+    components: { App },
+    Bus: new Vue()
 })

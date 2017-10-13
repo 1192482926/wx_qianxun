@@ -1,3 +1,4 @@
+
 <template>
 	<div class="Globals">
 		<div class="top-bg">
@@ -7,8 +8,8 @@
 			<el-row class="personal-name common-bg">
 				<el-col :span="10" class="head-img">
 					<div class="head-img-box xym_headImg">
-						<img src="../../assets/images/personalCenter/goods.png"/> 
-					</div> 
+						<img src="../../assets/images/personalCenter/goods.png"/>
+					</div>
 				</el-col>
 				<el-col :span="14" class="head-name">
 					<span>婷婷123</span>
@@ -51,7 +52,7 @@
 				</el-row>
 				<el-row class="find-allOrder">
 					<el-col :span="24" class="finds">
-						<router-link to="" class="find">查看全部订单</router-link>
+						<router-link to="/myorder" class="find">查看全部订单</router-link>
 					</el-col>
 				</el-row>
 			</div>
@@ -90,33 +91,33 @@
 				</router-link>
 			</el-row>
 
-		</div> 
+		</div>
      <Foot></Foot>
 	</div>
 </template>
 
-<script> 
-import Foot from '../footer/footer.vue' 
+<script>
+import Foot from '../footer/footer.vue'
 export default {
 	name: 'personalCenter',
 	data(){
 		return{}
-	}, 
+	},
 	components:{
 	  Foot
 	},
-	mounted:function(){ 
+	mounted:function(){
 		/* 头像宽等于高*/
 		 var headImg_Height = document.getElementsByClassName('xym_headImg')[0].clientHeight;
 		 document.getElementsByClassName('xym_headImg')[0].style.width = headImg_Height+'px';
 	}
-}  
-</script> 
+}
+</script>
 
-<style scoped> 
+<style scoped>
 	.el-row {margin-bottom: 0;}
 	body{background: #F0F1F1;}
-	/* Globals */ 
+	/* Globals */
 	.Globals{position: relative;height: 100%; background: #F0F1F1;}
 	/* Globals => top-bg */
 	.Globals .top-bg{position: relative; width: 100%;height: auto;}
@@ -153,3 +154,4 @@ export default {
 	.personal-box .info-list .info-list-right img{height: 20%;margin-top: 81%;}
 
 </style>
+ 

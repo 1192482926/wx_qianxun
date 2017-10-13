@@ -56,16 +56,15 @@ export default{
   }
 }
 </script>
-<style>
+<style scoped>
 .Password{
-  padding-top: 40px;
+ width:100%;
   height: 100%;
 }
 
 .findPassword {
   width: 100%;
   height: auto;
-  padding: 100px 0 0 0;
 }
 
 .findPassword label {

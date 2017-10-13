@@ -1,13 +1,13 @@
 <template>
 	<div class="Globals"> 
 		<div class="head">
-			<img src="../../assets/images/personalCenter/head-bg.png" />
-			<span>
-				<i class="icon iconfont icon-fanhui"></i>
-			</span>
+			<img src="../../assets/images/personalCenter/head-bg.png" /> 
 		</div>
 		
 		<div class="content">
+			<div class="back" @click="$router.go(-1)">
+				<i class="icon iconfont icon-fanhui"></i>
+			</div>
 			<div class="company">
 				<div class="logo-box">
 					<img src="../../assets/images/about/logo.png" />
@@ -41,10 +41,10 @@
 </script>
 
 <style scoped> 
-	.Globals{position: relative;background: #F0F1F1;height: auto;padding-bottom: 3%;}
+	.Globals{position: relative;background: #F0F1F1;height: auto;padding-bottom: 3%;min-height: 100%;}
 	.Globals .head{position: absolute;top: 0;left: 0; width: 100%;z-index: 1;}
-	.Globals .head img{width: 100%;display: block;} 
-	.Globals .head span{position: absolute;top: 10px;left: 4%;}
+	.Globals .head img{width: 100%;display: block;}  
+	.back{position: absolute;top: 10px;left: 4%;z-index: 20;}
 	.Globals .content{padding: 23% 4% 0 4%;position: relative;z-index: 10;}
 	
 	.company, .introduce, .contact{background: #FFFFFF;border-radius: 7px; position: relative;margin-bottom: 3%;padding: 3% 6%;}

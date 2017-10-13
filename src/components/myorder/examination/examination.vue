@@ -1,7 +1,7 @@
 <template>
 <div class='examination'>
-  <div class='packIF'>
-    <el-row :gutter="24" class='marginAll'>
+  <div class='morderEx'>
+    <el-row :gutter="24" class='marginAll textAlign'>
       <el-col :span="5" class='paddingAll'>
         <div class="grid-content bg-purple on">全部 </div>
       </el-col>
@@ -37,7 +37,7 @@ import  examinationList from './examinationList'
   .el-col-5 {
     width: 19.83333%;
   }
-  .el-row {
+  .textAlign {
     margin-bottom: 20px;
     text-align: center;
     &:last-child {
@@ -59,8 +59,8 @@ import  examinationList from './examinationList'
     padding: 10px 0;
     background-color: #f9fafc;
   }
-  /* packIF */
-  .packIF {
+
+  .morderEx {
     position: absolute;
     top: 0;
     left: 0;

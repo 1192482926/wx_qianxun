@@ -1,7 +1,7 @@
 <template>
   <div class='product'>
-    <div class='packIF'>
-      <el-row :gutter="20" class='marginAll'>
+    <div class='packIFTab'>
+      <el-row :gutter="20" class='marginAll textAlign'>
         <el-col :span="6" class='paddingAll'>
           <div class="grid-content bg-purple on">全部 </div>
         </el-col>
@@ -36,7 +36,7 @@ import productList from './productList'
     width: 100%;
     height: 100%;
   }
-  .el-row {
+  .textAlign {
     margin-bottom: 20px;
     text-align: center;
     &:last-child {
@@ -59,10 +59,15 @@ import productList from './productList'
     background-color: #f9fafc;
   }
   /* packIF */
-  .packIF {
+  .packIFTab {
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
+        height: 41px;
+    line-height: 3;
+    background: #fff;
+    border-bottom: 1px #f0f1f1 solid;
+    color: #202121;
   }
 </style>
