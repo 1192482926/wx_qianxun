@@ -27,7 +27,7 @@
       <el-row :gutter="20" class='packageList  marginAll'>
         <el-col :span="8">
           <div class="grid-content bg-purple">
-              <img src='http://www.tijianka.cc/images/201603/thumb_img/170_thumb_G_1458189676765.jpg'>
+            <img src='http://www.tijianka.cc/images/201603/thumb_img/170_thumb_G_1458189676765.jpg'>
           </div>
         </el-col>
         <el-col :span="15" class='paddingAll'>
@@ -58,9 +58,9 @@
       </el-row>
       <!-- 按钮 -->
     </el-row>
-<!-- 1 -->
+    <!-- 1 -->
 
-   <!-- 1 -->
+    <!-- 1 -->
     <el-row :gutter="20" class='List marginAll'>
       <!-- 订单号 -->
       <el-row :gutter="20" class='orderNumber  marginAll paddingAll'>
@@ -87,7 +87,7 @@
       <el-row :gutter="20" class='packageList  marginAll'>
         <el-col :span="8">
           <div class="grid-content bg-purple">
-              <img src='http://www.tijianka.cc/images/201603/thumb_img/170_thumb_G_1458189676765.jpg'>
+            <img src='http://www.tijianka.cc/images/201603/thumb_img/170_thumb_G_1458189676765.jpg'>
           </div>
         </el-col>
         <el-col :span="15" class='paddingAll'>
@@ -118,8 +118,8 @@
       </el-row>
       <!-- 按钮 -->
     </el-row>
-<!-- 1 -->
-   <!-- 1 -->
+    <!-- 1 -->
+    <!-- 1 -->
     <el-row :gutter="20" class='List marginAll'>
       <!-- 订单号 -->
       <el-row :gutter="20" class='orderNumber  marginAll paddingAll'>
@@ -146,7 +146,7 @@
       <el-row :gutter="20" class='packageList  marginAll'>
         <el-col :span="8">
           <div class="grid-content bg-purple">
-              <img src='http://www.tijianka.cc/images/201603/thumb_img/170_thumb_G_1458189676765.jpg'>
+            <img src='http://www.tijianka.cc/images/201603/thumb_img/170_thumb_G_1458189676765.jpg'>
           </div>
         </el-col>
         <el-col :span="15" class='paddingAll'>
@@ -177,8 +177,8 @@
       </el-row>
       <!-- 按钮 -->
     </el-row>
-<!-- 1 -->
-   <!-- 1 -->
+    <!-- 1 -->
+    <!-- 1 -->
     <el-row :gutter="20" class='List marginAll'>
       <!-- 订单号 -->
       <el-row :gutter="20" class='orderNumber  marginAll paddingAll'>
@@ -205,7 +205,7 @@
       <el-row :gutter="20" class='packageList  marginAll'>
         <el-col :span="8">
           <div class="grid-content bg-purple">
-              <img src='http://www.tijianka.cc/images/201603/thumb_img/170_thumb_G_1458189676765.jpg'>
+            <img src='http://www.tijianka.cc/images/201603/thumb_img/170_thumb_G_1458189676765.jpg'>
           </div>
         </el-col>
         <el-col :span="15" class='paddingAll'>
@@ -236,8 +236,8 @@
       </el-row>
       <!-- 按钮 -->
     </el-row>
-<!-- 1 -->
-   <!-- 1 -->
+    <!-- 1 -->
+    <!-- 1 -->
     <el-row :gutter="20" class='List marginAll'>
       <!-- 订单号 -->
       <el-row :gutter="20" class='orderNumber  marginAll paddingAll'>
@@ -264,7 +264,7 @@
       <el-row :gutter="20" class='packageList  marginAll'>
         <el-col :span="8">
           <div class="grid-content bg-purple">
-              <img src='http://www.tijianka.cc/images/201603/thumb_img/170_thumb_G_1458189676765.jpg'>
+            <img src='http://www.tijianka.cc/images/201603/thumb_img/170_thumb_G_1458189676765.jpg'>
           </div>
         </el-col>
         <el-col :span="15" class='paddingAll'>
@@ -295,7 +295,7 @@
       </el-row>
       <!-- 按钮 -->
     </el-row>
-<!-- 1 -->
+    <!-- 1 -->
 
   </div>
 </template>
@@ -308,91 +308,128 @@
 
 <style>
   /* 公共样式 */
+
   .textLeft {
     text-align: left;
   }
-  /* 公共样式 */
-  .examinationList {
-       width: 100%;
 
-    height: 500px;
+
+  /* 公共样式 */
+
+  .examinationList {
+    width: 100%;
+    height: calc(100vh - 100px);
     margin-top: 50px;
     overflow: auto;
   }
+
   .List {
     background: #fff;
     height: auto;
-    margin-bottom:10px!important;
+    margin-bottom: 10px!important;
   }
+
+
   /* 订单号 */
+
   .orderNumber {
     height: 40px;
     border-bottom: 1px #f0f1f1 solid;
   }
+
   .success {
     color: #009ee2;
     display: block;
     height: 100%;
     line-height: 36px;
   }
+
   .orderNumber .grid-content,
   .el-col {
     /*height: 100%;*/
   }
+
   .orderNumber .grid-content {
     line-height: 2;
   }
+
+
   /* .examinationList span {
-    display: inline-block;
-    height: 100%;
-    line-height: 40px;
-  } */
+      display: inline-block;
+      height: 100%;
+      line-height: 40px;
+    } */
+
+
   /* 订单号图标间距 */
+
   .orderNumber i {
     padding: 0 10px;
   }
+
+
   /* 机构名称 */
+
+
   /* .examinationList .name {
-    display: block;
-    height: 100%;
-    line-height: 40px;
-  } */
+      display: block;
+      height: 100%;
+      line-height: 40px;
+    } */
+
+
   /* 套餐列表 */
+
   .color {
     color: #202121;
   }
+
   .time {
     color: #a7acaf;
   }
+
+
   /* 价格和数量 */
+
   .priceAndNum {
     width: 100%;
   }
+
   .priceAndNum span {
     width: 50%;
   }
+
   .num {
     text-align: right;
     font-size: 12px;
   }
+
+
   /* 合计 */
+
   .sumNumPay {
     border-bottom: 1px #f0f1f1 solid;
   }
+
   .sumNum {
     width: 100%;
     text-align: right;
     margin: 0 -14px;
   }
+
   .quantity {
     color: #a7acaf;
-    margin:0 23px;
+    margin: 0 23px;
   }
+
   .pay {
     color: #202121;
     font-size: 14px;
   }
+
+
   /* 查看体检报告 */
+
   .See {
     width: 96px;
     height: 30px;
@@ -401,8 +438,10 @@
     color: #009ee2;
     float: right;
     margin: 5px 10px;
-
   }
-  .See span{ line-height:30px;padding:0 5px;}
 
+  .See span {
+    line-height: 30px;
+    padding: 0 5px;
+  }
 </style>

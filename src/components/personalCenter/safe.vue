@@ -13,37 +13,46 @@
 				</el-col>
 				<el-col :span="4"></el-col>
 			</el-row>
-		</div> 
+		</div>
 		<div class="safe-box">
-			<div class="userInfo-list mTop"> 
+			<div class="userInfo-list mTop">
 				<router-link to="/updatePhoneNum">
 					<el-row>
 						<el-col :span="12" class="userInfo-title">修改手机号</el-col>
 						<el-col :span="12" class="userInfo-val">
-							<span class="vals">18202810945</span> 
+							<span class="vals">{{phone }}</span>
 						</el-col>
-					</el-row> 
+					</el-row>
 				</router-link>
 			</div>
 			<div class="userInfo-list">
 				<router-link to="/updatePassword">
 					<el-row>
-						<el-col :span="24" class="userInfo-title">修改密码</el-col> 
+						<el-col :span="24" class="userInfo-title">修改密码</el-col>
 					</el-row>
 				</router-link>
 			</div>
-		</div> 
-	</div> 
+		</div>
+	</div>
 </template>
 
 <script>
+export default{
+  name:'phone',
+  data(){
+    return{
+     phone:sessionStorage.getItem('user') ? JSON.parse(sessionStorage.getItem('user')).phone : '未登录'
+    }
+  }
+
+}
 </script>
 
 <style scoped>
 	.Globals{background: rgb(240,241,241);}
 	/* 本页内容包  .safe-box */
 	.safe-box{font-size: 14px;}
-	.safe-box .mTop{margin-top: 10px;}  
+	.safe-box .mTop{margin-top: 10px;}
 	.safe-box .userInfo-list{background: #FFFFFF;font-size: 16px;border-bottom: 1px solid #F0F1F1;padding: 15px 4%;}
 	.safe-box .userInfo-list a{color: #000000;}
 	.safe-box .userInfo-list .el-col{}

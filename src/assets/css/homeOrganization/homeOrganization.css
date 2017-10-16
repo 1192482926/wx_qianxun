@@ -4,15 +4,6 @@
     height: 500px;
 }
 
-.examinationListImg {
-    height: 150px;
-}
-
-.examinationListImg img {
-    height: 100%;
-    background-size: 100%;
-}
-
 .examinationListAddress {
     font-size: 12px;
     text-align: left;

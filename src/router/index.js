@@ -21,17 +21,23 @@ import updateName from '@/components/personalCenter/updateName'
 import archivesDetail from '@/components/archives/archivesDetail'
 import updatePhoneNum from '@/components/personalCenter/updatePhoneNum'
 import updatePassword from '@/components/personalCenter/updatePassword'
+import packL from '@/components/Package/packsList'
+
 Vue.use(Router)
 
-export default new Router({
-    mode: 'history',
+let router = new Router({
+    mode: 'hash',
+    linkActiveClass: 'active',
+
     routes: [{
             path: '/',
-            component: index
+            component: index,
+            meta: { keepAlive: true }
         }, {
             path: '/myorder',
             name: 'myorder',
-            component: myorder
+            component: myorder,
+            meta: { keepAlive: true }
         }, {
             path: '/findPassword',
             name: 'findPassword',
@@ -59,7 +65,8 @@ export default new Router({
             name: 'personalCenter',
             component: personalCenter,
             meta: {
-                me: true
+                me: true,
+                requireAuth: true
             }
         },
         {
@@ -75,12 +82,18 @@ export default new Router({
         {
             path: '/PackageDetail/:id',
             name: 'PackageDetail',
-            component: PackageDetail
+            component: PackageDetail,
+            meta: {
+                requireAuth: true
+            }
         },
         {
-            path: '/organizationDetail',
+            path: '/organizationDetail/:id',
             name: 'organizationDetail',
-            component: organizationDetail
+            component: organizationDetail,
+            meta: {
+                requireAuth: true
+            }
         },
         {
             path: '/register',
@@ -125,22 +138,29 @@ export default new Router({
             path: '/updatePassword',
             name: 'updatePassword',
             component: updatePassword
+        },
+        {
+            path: '/packL',
+            name: 'packL',
+            component: packL
         }
     ]
 })
-
+//router.push({ 'path': '/packL' });
 // 判断是否需要登录权限 以及是否登录
-// Router.beforeEach((to, from, next) => {
-//     if (to.matched.some(res => res.meta.requireAuth)) { // 判断是否需要登录权限
-//         if (localStorage.getItem('username')) { // 判断是否登录
-//             next()
-//         } else { // 没登录则跳转到登录界面
-//             next({
-//                 path: '/Register',
-//                 query: { redirect: to.fullPath }
-//             })
-//         }
-//     } else {
-//         next()
-//     }
-// })
+router.beforeEach((to, from, next) => {
+    if (to.matched.some(res => res.meta.requireAuth)) { // 判断是否需要登录权限
+        if (sessionStorage.getItem('user')) { // 判断是否登录
+            next()
+        } else { // 没登录则跳转到登录界面
+            next({
+                path: '/login',
+                query: { redirect: to.fullPath }
+            })
+        }
+    } else {
+        next()
+    }
+})
+
+export default router;

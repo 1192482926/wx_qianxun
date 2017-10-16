@@ -125,3 +125,25 @@ a {
     border: none;
     height: 0;
 }
+
+
+/* 图片的高度，统一*/
+
+.examinationListImg img {
+    height: 120px;
+    -o-object-fit: cover;
+    object-fit: cover;
+}
+
+.imgHeight {
+    height: 120px;
+    -o-object-fit: cover;
+    object-fit: cover;
+}
+
+
+/* 去掉轮廓线 */
+
+input {
+    outline: none
+}

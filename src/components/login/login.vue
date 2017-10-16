@@ -78,7 +78,7 @@
 
       },
       pass(val) {
-        this.pass = this.pass.replace(/[^a-zA-Z1-9]/g, '');
+        this.pass = this.pass.replace(/[^a-zA-Z0-9]/g, '');
           if (val.length >= 6) {
             this.flagPass = true;
           } else {
@@ -114,16 +114,17 @@
         }
       },
       login() { //登录
-
         if (this.phone.length > 0 || this.pass.length > 0) {
           this.falgArr = false;
           this.$cookie.set('phone', this.phone);
           this.$cookie.set('pass', this.pass);
           var ph = this.$cookie.get('phone');
           var pass = this.$cookie.get('pass');
-          window.sessionStorage.setItem("user",ph); 
+          window.sessionStorage.setItem("user",ph);
           login(ph, md5(pass)).then(res => {
             if (res.code == "000000") {
+              sessionStorage.setItem("user", JSON.stringify(res.object3));
+              this.phone = res.object3.phone;
               this.$message('登录成功');
               this.$router.push('/');
             }

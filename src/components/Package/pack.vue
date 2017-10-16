@@ -21,13 +21,15 @@
       <!-- </el-col> -->
     </el-row>
     <!-- mesu ui做的 -->
-    <keep-alive>
-      <router-view></router-view>
-    </keep-alive>
+
+      <router-view keep-alive></router-view>
+<Foot></Foot>
   </div>
 </template>
 
 <script>
+   import Foot
+  from '../footer/footer.vue'
   import {
     mapState
   } from 'vuex'
@@ -81,6 +83,9 @@
       }
 
 
+    },
+    components:{
+      Foot
     }
   }
 </script>
@@ -94,7 +99,7 @@
     top: 45px;
     background: #fff;
     width: 100%;
-   height: calc(100vh - 152px);
+   height: calc(100vh - 145px);
   }
 
 
@@ -153,7 +158,7 @@ object-fit: cover;
 
   /* 更改样式 */
 
-  .packageTextHot {
+  /* .packageTextHot {
     height: 44px;
     font-size: 14px;
     font-weight: normal;
@@ -163,7 +168,7 @@ object-fit: cover;
     letter-spacing: 0px;
     color: #202121;
     overflow: hidden;
-  }
+  } */
 
 
   /*****mu-item*/

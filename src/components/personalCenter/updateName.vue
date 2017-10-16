@@ -17,7 +17,7 @@
 		<div class="updateName-box">
 			  <p class="update-title">修改姓名</p>
 			  <div class="update-box">
-			  	<input type="text" placeholder="杨阳洋xqzr001"/>
+			  	<input type="text" v-model="name" :value="name" @blur="changeName(name)"/>
 			  </div>
 		</div>
 		
@@ -25,6 +25,24 @@
 </template>
 
 <script>
+	export default{
+		name:'updateName',
+		data(){
+			return {
+				name:''
+			}
+		},
+		mounted:function(){
+			var headName = localStorage.getItem('headName');
+			this.name = headName; 
+		},
+		methods:{
+			changeName:function(e){ // 已经更改名字
+				localStorage.setItem('updateHeadName',e);
+				console.log(localStorage.getItem('updateHeadName'));
+			}
+		}
+	} 
 </script>
 
 <style scoped>

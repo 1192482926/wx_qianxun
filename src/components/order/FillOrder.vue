@@ -128,6 +128,7 @@
 	import $ from 'jquery'
 	import { imgBaseUrl } from '../../conifg/production'
 	import { isNullVal } from '../../conifg/comm.js'
+	import { submitOrderNow } from '../../conifg/getData'
 
 	export default {
 		name: 'FillOrder',
@@ -168,6 +169,7 @@
 		methods: {
 			submit() { 
 				//this.$router.push('/SubmitOrder');
+				var packageData = JSON.parse(localStorage.getItem("packageData")); 
 
 				var details = new Array();
 				$.each($('.fill-physical'), function(i, item) {  
@@ -222,11 +224,11 @@
 					var marry = $('.marry input:radio:checked').val();
 					
 					details.push({
-						//medicalPlanId: localStorage.getItem("listId"), // 套餐id
+						medicalPlanId: packageData.id, // 套餐id
 						name: personName, //体检人名字
 						sex: sexVal, //体检人性别
 						maritalStatus: marry, //婚姻
-						appointmentTime: selectDate, //日期
+						appointmentTime: dateApp, //日期
 						phone: personPhone, //体检人手机号
 						idCard: personIdCard, //身份证
 						isToContacts: 0
@@ -259,9 +261,18 @@
 						alert("手机号码格式不正确");
 						return false;
 					}
+				}  
+				var orderRequest = {
+					people: contactName,
+					phone: contactPhone,
+					details: details
 				}
-				 
-				 
+				
+				console.log(JSON.stringify(orderRequest));
+				
+				submitOrderNow(JSON.stringify(orderRequest)).then(res => {
+					console.log(res)
+				});
 				 
 				
 				

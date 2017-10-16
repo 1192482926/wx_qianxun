@@ -27,14 +27,14 @@
 				<el-row>
 					<el-col :span="12" class="userInfo-title">姓名</el-col>
 					<el-col :span="12" class="userInfo-val">
-						<router-link to="/updateName" class="vals">杨阳洋xqzr001</router-link>
+						<router-link to="/updateName" class="vals headName">{{headName}}</router-link>
 					</el-col>
 				</el-row> 
 			</div>
 			<div class="userInfo-list mTop" v-on:click="blockGender">
 				<el-row>
 					<el-col :span="12" class="userInfo-title">性别</el-col>
-					<el-col :span="12" class="userInfo-val">{{gender.vals}}</el-col>
+					<el-col :span="12" class="userInfo-val genderVals">{{gender.vals}}</el-col>
 					<div class="sel" v-show="gender.isShow"> 
 					    <ul>
 					    	<li @click="ChangeGender($event)">男</li>
@@ -56,7 +56,7 @@
 			<div class="userInfo-list" v-on:click="blockMarry">
 				 <el-row>
 					<el-col :span="12" class="userInfo-title" id="dd">婚姻状态</el-col>
-					<el-col :span="12" class="userInfo-val">{{marry.vals}}</el-col>
+					<el-col :span="12" class="userInfo-val marryVals">{{marry.vals}}</el-col>
 					<div class="sel" v-show="marry.isShow"> 
 					    <ul>
 					    	<li @click="ChangeMarry($event)">未婚</li>
@@ -68,35 +68,62 @@
 			<div class="userInfo-list mTop">
 				 <el-row>
 					<el-col :span="12" class="userInfo-title">手机号</el-col>
-					<el-col :span="12" class="userInfo-phone">未填写</el-col>
+					<el-col :span="12" class="userInfo-phone">{{phone}}</el-col>
 				</el-row> 
 			</div> 
-		 	<div class="save" >保存</div>
+		 	<div class="save" @click="saveUserInfo">保存</div>
 		</div>
 	</div>
 </template>
 
 <script> 
-	import logoSrc from '../../assets/images/personalCenter/head.png'  
+	import logoSrc from '../../assets/images/personalCenter/head.png'
+	import { upDateUser } from '../../conifg/getData'
 	export default {
 		name: 'userinfo',
 		data() {
 			return {
 				logoSrc,
-				gender:{
+				headName:'', //用户名
+				gender:{ //用户性别
 					isShow:false,
-					vals:'男'
+					vals:''
 				},
-				marry:{
+				marry:{ //婚配
 					isShow:false,
-					vals:'已婚'
+					vals:''
 				},
-				selectDate:{
+				selectDate:{ //出生日期
 					maxDate:'', 
-					valDate:'2017-09-10'
-				}  
+					valDate:''
+				},
+				phone:''
 			}
 		}, 
+		mounted:function(){
+			var userInfo = JSON.parse(sessionStorage.getItem("user"));
+			/* 用户名 */
+			if(!localStorage.getItem('updateHeadName')){
+				//获取名字
+				this.headName = userInfo.name;
+				localStorage.setItem('headName',this.headName);
+				//console.log(localStorage.getItem('headName'));
+			}else{ 
+				//更改名字 
+				this.headName = localStorage.getItem('updateHeadName');
+				console.log(localStorage.getItem('updateHeadName'));
+				//localStorage.setItem('headName',this.headName);
+			}
+		 	/* 性别 */ 
+		 	this.gender.vals = userInfo.sex==0?"女":"男";
+		 	/* 婚配 */
+		 	this.marry.vals = userInfo.maritalStatus==0?"未婚":"已婚";
+		 	/* 生日 */
+		 	this.selectDate.valDate = (userInfo.birthday).substr(0,10);
+		 	/* 电话 不可改*/
+		 	this.phone = userInfo.phone; 
+		 	console.log(sessionStorage.getItem("user")); 
+		},
 		methods:{
 			ChangeGender:function(e) { 
 		    	this.gender.vals = e.currentTarget.innerHTML;  
@@ -117,7 +144,20 @@
 		    	var DatasDay = Datas.getDate(); 
 		    	var returnDatas = DatasYear+"-"+DatasMouth+"-"+DatasDay; 
 		    	this.selectDate.maxDate = returnDatas;
-		    } 
+		    },
+		    /* 保存 修改信息*/
+		    saveUserInfo:function(){
+		    	var name = this.headName;
+				var sex = this.gender.vals=="男"?1:0;
+				//var birthday = this.selectDate.valDate.substr(0,10);
+				var birthday = (document.getElementsByClassName('mu-text-field-hint')[0].innerHTML).trim();
+				//JSON.parse(sessionStorage.getItem('user')).birthday ? JSON.parse(sessionStorage.getItem('user')).birthday.substr(0,10): "" 
+				var maritalStatus = this.marry.vals=="未婚"?0:1;
+				console.log(birthday);
+		    	upDateUser(name, sex, birthday, maritalStatus).then(rep => {
+		    		//console.log(rep);
+		    	})
+		    }
 		    
 		} 
 	}  

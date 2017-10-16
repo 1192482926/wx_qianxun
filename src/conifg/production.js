@@ -1,5 +1,5 @@
 let baseUrl = 'http://192.168.0.116:8080/yftj-web/';
-   //let baseUrl = 'http://www.yeafon.com/';
+     //let baseUrl = 'http://www.yeafon.com/';
 let routerMode = 'history';
 let imgBaseUrl = 'http://img.yeafon.com';
 

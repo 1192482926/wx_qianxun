@@ -3,33 +3,36 @@
     <haderAll msg='新用户注册'></haderAll>
     <div class='registerInput'>
       <label :class="falgArr ? 'red' :''">
-                      <i class='icon iconfont icon-yonghudenglu'></i>
-                      <input type='text' placeholder='请输入用户名' maxlength='10' v-model='loginName' @focus='inoutFocus($event)'>
-                      <i class='icon iconfont inconPosition' :class="flag ?  'icon-duigou1' : 'icon-cuowutishi' " ></i>
-                      <!-- <i class='icon iconfont icon-cuowutishi'></i> -->
-                  </label>
+            <i class='icon iconfont icon-yonghudenglu'></i>
+            <input type='text' placeholder='请输入用户名' maxlength='10' v-model='loginName' @focus='inoutFocus($event)'>
+            <i class='icon iconfont inconPosition' :class="flag ?  'icon-duigou1' : 'icon-cuowutishi' " ></i>
+            <!-- <i class='icon iconfont icon-cuowutishi'></i> -->
+        </label>
       <label :class="falgArr ? 'red' :''">
-                      <i class='icon iconfont icon-shouji'></i>
-                      <input type='text' placeholder='请输入手机号码' maxlength='11' v-model='phone'  @focus='inoutFocus($event)'>
-                      <!-- <i class='icon iconfont icon-duigou1'></i> -->
-                      <i class='icon iconfont  inconPosition'  :class=" flagPhone ?  'icon-duigou1' : 'icon-cuowutishi' "></i>
-                  </label>
+          <i class='icon iconfont icon-shouji'></i>
+          <input type='text' placeholder='请输入手机号码' maxlength='11' v-model='phone'  @focus='inoutFocus($event)'>
+          <!-- <i class='icon iconfont icon-duigou1'></i> -->
+          <i class='icon iconfont  inconPosition'  :class=" flagPhone ?  'icon-duigou1' : 'icon-cuowutishi' "></i>
+      </label>
       <label :class="falgArr ? 'red' :''">
-                      <i class='icon iconfont icon-mima'></i>
-                      <input type='password' placeholder='请输入密码' maxlength='16' ref='password' @focus='inoutFocus($event)' v-model='pass'>
-                      <i class='icon iconfont icon-denglu-buxianshimima' @click='Whether' :class="show ? 'icon-denglu-xianshimima' : 'icon-denglu-buxianshimima' "></i>
-                      <!-- <i class='icon iconfont icon-duigou1'></i> -->
-                      <i class='icon iconfont  inconPosition'  :class=" flagPass ?  'icon-duigou1' : 'icon-cuowutishi' "></i>
-                  </label>
+        <i class='icon iconfont icon-mima'></i>
+        <input type='password' placeholder='请输入密码' maxlength='16' ref='password' @focus='inoutFocus($event)' v-model='pass'>
+        <i class='icon iconfont icon-denglu-buxianshimima' @click='Whether' :class="show ? 'icon-denglu-xianshimima' : 'icon-denglu-buxianshimima' "></i>
+        <!-- <i class='icon iconfont icon-duigou1'></i> -->
+        <i class='icon iconfont  inconPosition'  :class=" flagPass ?  'icon-duigou1' : 'icon-cuowutishi' "></i>
+    </label>
       <label>
-                      <i class='icon iconfont icon-yanzhengmima'></i>
-                      <input type='text' placeholder='请输入验证码' maxlength='6'  @focus='inoutFocus($event)' v-model='code'>
-               <a class='getCode' @click='getCode'>获取验证码</a>
-                      <!-- <i class='icon iconfont icon-duigou1'></i> -->
-                      <i class='icon iconfont  inconPosition'  :class=" flagcode ?  'icon-duigou1' : 'icon-cuowutishi' "></i>
-                  </label>
+        <i class='icon iconfont icon-yanzhengmima'></i>
+        <input type='text' placeholder='请输入验证码' maxlength='6'  @focus='inoutFocus($event)' v-model='code'>
+   <!-- <a class='getCode' @click='getCode'>获取验证码</a> -->
+  <getCodeZ :start='start' :phone='this.phone'   @countDown ='start=false' @click.native='sendCode'></getCodeZ>
+                              <!-- <i class='icon iconfont icon-duigou1'></i> -->
+                              <i class='icon iconfont  inconPosition'  :class=" flagcode ?  'icon-duigou1' : 'icon-cuowutishi' "></i>
+                          </label>
+
+
       <el-row class='loginButton'>
-        <el-button type="primary" class='loginS'>登录</el-button>
+        <el-button type="primary" class='loginS' @click='registerL'>注册</el-button>
         <router-link :to="{path:'/login'}">
           <el-button class="registerLogin loginS">已有账号，立即登录</el-button>
         </router-link>
@@ -41,7 +44,14 @@
 
 <script>
   import '../../conifg/rem'
+  import md5 from 'js-md5'
+  import {
+    BooleanLogin,
+    VerificationCode,
+    register
+  } from '../../conifg/getData'
   import haderAll from '../headerAll/headerAll'
+  import getCodeZ from './getCode'
   export default {
     name: 'register',
     data() {
@@ -57,7 +67,11 @@
         pass: '',
         flagPass: false,
         codeFalg: false, //用老判断是否获取验证码
-        falgArr: false, //用来判断如果input没有填完的话，就用label显示红线标识
+        falgArr: false, //用来判断如果input没有填完的话，就用label显示红线标识，
+        timer: null,
+        count: 60,
+        start: false
+
       }
     },
     watch: {
@@ -71,38 +85,19 @@
           this.codeFalg = false;
         }
       },
+
       phone(val) { //手机号
         this.phone = this.phone.replace(/[^0-9]/g, '');
         if (this.phone.length >= 11 && this.phone.length <= 11) {
           this.codeFalg = true;
-          var params = new URLSearchParams();
-          params.append('phone', val);
-          this.$http({
-              method: 'post',
-              url: this.fytjURL + 'user/checkPhone',
-              params,
-              withCredentials: true
-            })
-            .then((res) => {
-              if (res.data.code == '000000') {
-                this.flagPhone = true;
-              } else {
-                this.flagPhone = false;
-              }
-              console.log(res.data.code);
-            })
-            .catch((error) => {
-              if (error.response) {
-                // 请求已发出，但服务器响应的状态码不在 2xx 范围内
-                console.log(error.response.data);
-                console.log(error.response.status);
-                console.log(error.response.headers);
-              } else {
-                // Something happened in setting up the request that triggered an Error
-                console.log('Error', error.message);
-              }
-              console.log(error.config);
-            })
+          BooleanLogin(val).then(res => {
+            if (res.code == '000000') {
+              this.flagPhone = true;
+            } else {
+              this.$message('已经注册了');
+              this.flagPhone = false;
+            }
+          })
         } else {
           this.flagPhone = false;
           this.codeFalg = false;
@@ -112,12 +107,15 @@
         this.code = this.code.replace(/[^0-9]/g, '');
         if (this.code.length >= 6 && this.code.length <= 6) {
           this.flagcode = true;
+          VerificationCode(this.code).then(res => {
+            this.$message(res.message);
+          })
         } else {
           this.flagcode = false;
         }
       }, //密码
       pass() {
-        this.pass = this.pass.replace(/[^a-zA-Z]/g, '');
+        this.pass = this.pass.replace(/[^a-zA-Z1-9]/g, '');
         if (this.pass.length >= 6 && this.pass.length <= 16) {
           this.flagPass = true;
           this.codeFalg = true;
@@ -128,60 +126,35 @@
       }
     },
     methods: {
-      //获取验证码
-      getCode() {
-        if (this.flagPhone) {
+      //注册
+      registerL() {
+        if (this.phone.length > 0 || this.pass.length > 0 || this.code.length > 0) {
           this.falgArr = false;
-          //获取验证码
-          var params = new URLSearchParams();
-          params.append('phone', this.phone);
-          this.$http({
-              method: 'post',
-              url: this.fytjURL + 'user/sendCode',
-              withCredentials: true,
-              params
-            })
-            .then((res) => {
-              conaole.log(res);
-              if (res.data.code == '000000') {
-                this.$cookie.set('codeTime', new Date().toString(), {
-                  path: "/",
-                  expires: 1
-                });
-                var count = 60;
-                // jQuery(".getcode").addClass("waiting");
-                var div = document.getelementByClassName('waiting');
-                div.setAttribute("class", "waiting");
-                var timer = setInterval(function() {
-                  count--;
-                  if (count > 0) {
-                    var div = document.getelementByClassName('getcode')[0];
-                    div.innerText('重新发送（" + count + "）');
-                  } else {
-                    clearInterval(timer);
-                    var div = document.getelementByClassName('getcode')[0];
-                    div.innerText('发送验证码');
-                  }
-                }, 1000);
-              }
-            })
-            .catch((error) => {
-              if (error.response) {
-                // 请求已发出，但服务器响应的状态码不在 2xx 范围内
-                console.log(error.response.data);
-                console.log(error.response.status);
-                console.log(error.response.headers);
-              } else {
-                // Something happened in setting up the request that triggered an Error
-                console.log('Error', error.message);
-              }
-              console.log(error.config);
-            })
+          register(this.phone, md5(this.pass), this.code).then(res => {
+            console.log(res);
+            if (res.code == '000000') {
+              this.$router.push('/login');
+            }
+          })
         } else {
-          console.log("请填写");
+          this.$message('请填写资料');
           this.falgArr = true;
+          return false;
         }
       },
+      //获取验证码
+      sendCode(value) {
+        if (this.phone.length > 0 || this.pass.length > 0  ) {
+          //前面发送ajax请求成功之后调用this.start = true开始短信倒计时
+          this.start = true
+          this.falgArr = false;
+        } else {
+          this.$message('请填写资料');
+          this.falgArr = true;
+          return false;
+        }
+      },
+
       Whether() { //显示或者隐藏密码
         let inputWhether = this.$refs.password.type;
         if (inputWhether == 'password') {
@@ -204,7 +177,8 @@
       }
     },
     components: {
-      haderAll
+      haderAll,
+      getCodeZ
     }
   }
 </script>
@@ -291,24 +265,6 @@
   }
 
 
-  /* 获取验证码 */
-
-  .getCode {
-    width: 78px;
-    height: 28px;
-    font-size: 14px;
-    font-weight: normal;
-    font-style: normal;
-    font-stretch: normal;
-    line-height: inherit;
-    letter-spacing: 0px;
-    color: #0a85dd;
-    position: absolute;
-    right: 50px;
-    top: 26px;
-  }
-
-
   /* label */
 
   #app .red {
@@ -329,31 +285,32 @@
     .loginButton {
       margin: 25px 0 0 0;
     }
-    .getCode{
+    .getCode {
       width: 78px;
       position: absolute;
       right: 32px;
       top: 16px;
     }
-    .registerInput{
-padding: 0px;
+    .registerInput {
+      padding: 0px;
     }
-    .loginButton{
-margin: 20px 0 0 0;
+    .loginButton {
+      margin: 20px 0 0 0;
     }
   }
-    @media (device-height:568px) and (-webkit-min-device-pixel-ratio:2) {
-         .registerInput{
-padding: 0px;
+
+  @media (device-height:568px) and (-webkit-min-device-pixel-ratio:2) {
+    .registerInput {
+      padding: 0px;
     }
-    .loginButton{
-margin: 20px 0 0 0;
+    .loginButton {
+      margin: 20px 0 0 0;
     }
-    .getCode{
+    .getCode {
       width: 78px;
       position: absolute;
       right: 30px;
       top: 26px;
     }
-    }
+  }
 </style>

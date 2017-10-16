@@ -1,4 +1,3 @@
-
 <template>
 	<div class="Globals">
 		<div class="top-bg">
@@ -8,11 +7,11 @@
 			<el-row class="personal-name common-bg">
 				<el-col :span="10" class="head-img">
 					<div class="head-img-box xym_headImg">
-						<img src="../../assets/images/personalCenter/goods.png"/>
+						<img src="../../assets/images/personalCenter/goods.png" />
 					</div>
 				</el-col>
 				<el-col :span="14" class="head-name">
-					<span>婷婷123</span>
+					<span>{{headName}}</span>
 				</el-col>
 			</el-row>
 			<div class="personal-order common-bg">
@@ -20,7 +19,7 @@
 					<el-col :span="6" class="logistics-box">
 						<router-link to="">
 							<p class="logistics-img">
-								<img src="../../assets/images/personalCenter/Pending-payment.png"/>
+								<img src="../../assets/images/personalCenter/Pending-payment.png" />
 							</p>
 							<p class="logistics-name">待付款</p>
 						</router-link>
@@ -36,7 +35,7 @@
 					<el-col :span="6" class="logistics-box">
 						<router-link to="">
 							<p class="logistics-img">
-								<img src="../../assets/images/personalCenter/Completed.png"/>
+								<img src="../../assets/images/personalCenter/Completed.png" />
 							</p>
 							<p class="logistics-name">已完成</p>
 						</router-link>
@@ -44,7 +43,7 @@
 					<el-col :span="6" class="logistics-box">
 						<router-link to="">
 							<p class="logistics-img">
-								<img src="../../assets/images/personalCenter/refund.png"/>
+								<img src="../../assets/images/personalCenter/refund.png" />
 							</p>
 							<p class="logistics-name">退货/退款</p>
 						</router-link>
@@ -57,7 +56,7 @@
 				</el-row>
 			</div>
 
-            <el-row class="common-bg info-list">
+			<el-row class="common-bg info-list">
 				<router-link to="/userinfo">
 					<el-col :span="5" class="info-list-icon">
 						<img src="../../assets/images/personalCenter/personal-data.png" />
@@ -92,66 +91,212 @@
 			</el-row>
 
 		</div>
-     <Foot></Foot>
+		<Foot></Foot>
 	</div>
 </template>
 
 <script>
-import Foot from '../footer/footer.vue'
-export default {
-	name: 'personalCenter',
-	data(){
-		return{}
-	},
-	components:{
-	  Foot
-	},
-	mounted:function(){
-		/* 头像宽等于高*/
-		 var headImg_Height = document.getElementsByClassName('xym_headImg')[0].clientHeight;
-		 document.getElementsByClassName('xym_headImg')[0].style.width = headImg_Height+'px';
+	import Foot from '../footer/footer.vue'
+	import { 
+		userId 
+	} from '../../conifg/getData'
+	export default {
+		name: 'personalCenter',
+		data() {
+			return {
+				headName: '',
+				opendId: ''
+			}
+		},
+		components: {
+			Foot
+		},
+		mounted: function() {
+			/* 头像宽等于高*/
+			var headImg_Height = document.getElementsByClassName('xym_headImg')[0].clientHeight;
+			document.getElementsByClassName('xym_headImg')[0].style.width = headImg_Height + 'px';
+
+			var userInfo = JSON.parse(sessionStorage.getItem("user"));
+			this.headName = userInfo.name;
+			//console.log(sessionStorage.getItem("user"));
+			
+  			localStorage.setItem('updateHeadName',''); //返回后删除更改的名字存储 
+  			
+  			this.getByid(); 
+		},
+		methods: {
+			getByid: function() {
+				/*getOpenId().then(rep => {
+					console.log(JSON.parse(rep) )
+				});*/
+			}
+		}
 	}
-}
 </script>
 
 <style scoped>
-	.el-row {margin-bottom: 0;}
-	body{background: #F0F1F1;}
+	.el-row {
+		margin-bottom: 0;
+	}
+	
+	body {
+		background: #F0F1F1;
+	}
 	/* Globals */
-	.Globals{position: relative;height: 100%; background: #F0F1F1;}
+	
+	.Globals {
+		position: relative;
+		height: 100%;
+		background: #F0F1F1;
+	}
 	/* Globals => top-bg */
-	.Globals .top-bg{position: relative; width: 100%;height: auto;}
-	.Globals .top-bg img{width: 100%;}
+	
+	.Globals .top-bg {
+		position: relative;
+		width: 100%;
+		height: auto;
+	}
+	
+	.Globals .top-bg img {
+		width: 100%;
+	}
 	/* Globals => personal-box */
-	.personal-box{position: relative;z-index:5;top: -15%;padding: 0 5%;width:100%;height:20%;}
-	.personal-box .common-bg{border-radius: 5px;background: #FFFFFF;}
+	
+	.personal-box {
+		position: relative;
+		z-index: 5;
+		top: -15%;
+		padding: 0 5%;
+		width: 100%;
+		height: 20%;
+	}
+	
+	.personal-box .common-bg {
+		border-radius: 5px;
+		background: #FFFFFF;
+	}
 	/* Globals => personal-box => personal-name*/
-	.personal-box .personal-name{padding: 20px 0;height:100%;}
-	.personal-box .personal-name .head-img{height: 100%;text-align: center;}
-	.personal-box .personal-name .head-img .head-img-box{height: 100%;border-radius: 100%;overflow: hidden;margin: 0 auto;}
-	.personal-box .personal-name .head-img .head-img-box img{height: 100%;width: 100%;}
-	.personal-box .personal-name .head-name{font-size: 18px;height: 100%;display: table;overflow: hidden;text-align: left;}
-	.personal-box .personal-name .head-name span{display: table-cell; vertical-align: middle;}
+	
+	.personal-box .personal-name {
+		padding: 20px 0;
+		height: 100%;
+	}
+	
+	.personal-box .personal-name .head-img {
+		height: 100%;
+		text-align: center;
+	}
+	
+	.personal-box .personal-name .head-img .head-img-box {
+		height: 100%;
+		border-radius: 100%;
+		overflow: hidden;
+		margin: 0 auto;
+	}
+	
+	.personal-box .personal-name .head-img .head-img-box img {
+		height: 100%;
+		width: 100%;
+	}
+	
+	.personal-box .personal-name .head-name {
+		font-size: 18px;
+		height: 100%;
+		display: table;
+		overflow: hidden;
+		text-align: left;
+	}
+	
+	.personal-box .personal-name .head-name span {
+		display: table-cell;
+		vertical-align: middle;
+	}
 	/* Globals => personal-box => personal-order*/
 	/* logistics */
-	.personal-box .personal-order{margin: 5% 0;text-align: center;height: 100%;}
-	.personal-box .personal-order .logistics{height: 70%;}
-	.personal-box .personal-order .logistics .logistics-box{height: 100%;}
-	.personal-box .personal-order .logistics .logistics-img{height: 30%;margin: 20% 0 17% 0;}
-	.personal-box .personal-order .logistics .logistics-img img{height: 100%;}
-	.personal-box .personal-order .logistics .logistics-name{overflow: hidden;font-size: 14px;height: 25%;color: #000000;}
+	
+	.personal-box .personal-order {
+		margin: 5% 0;
+		text-align: center;
+		height: 100%;
+	}
+	
+	.personal-box .personal-order .logistics {
+		height: 70%;
+	}
+	
+	.personal-box .personal-order .logistics .logistics-box {
+		height: 100%;
+	}
+	
+	.personal-box .personal-order .logistics .logistics-img {
+		height: 30%;
+		margin: 20% 0 17% 0;
+	}
+	
+	.personal-box .personal-order .logistics .logistics-img img {
+		height: 100%;
+	}
+	
+	.personal-box .personal-order .logistics .logistics-name {
+		overflow: hidden;
+		font-size: 14px;
+		height: 25%;
+		color: #000000;
+	}
 	/* find-allOrder */
-	.personal-box .personal-order .find-allOrder{height: 30%;border-top: 1px solid #F8F8F9;}
-	.personal-box .personal-order .find-allOrder .finds{display: table;height: 100%;}
-	.personal-box .personal-order .find-allOrder .finds .find{display: table-cell;vertical-align: middle;color: #36B5E9;font-size: 13px;}
+	
+	.personal-box .personal-order .find-allOrder {
+		height: 30%;
+		border-top: 1px solid #F8F8F9;
+	}
+	
+	.personal-box .personal-order .find-allOrder .finds {
+		display: table;
+		height: 100%;
+	}
+	
+	.personal-box .personal-order .find-allOrder .finds .find {
+		display: table-cell;
+		vertical-align: middle;
+		color: #36B5E9;
+		font-size: 13px;
+	}
 	/*info-list*/
-	.personal-box .info-list{margin-bottom: 4%;height: 38%;}
-	.personal-box .info-list .info-list-icon{height: 100%;text-align: center;}
-	.personal-box .info-list .info-list-icon img{height: 50%;margin-top: 20%;}
-	.personal-box .info-list .info-list-name{height: 100%;display: table;color: #000;text-align: left;}
-	.personal-box .info-list .info-list-name span{display: table-cell;vertical-align: middle;}
-	.personal-box .info-list .info-list-right{height: 100%;text-align: center;}
-	.personal-box .info-list .info-list-right img{height: 20%;margin-top: 81%;}
-
+	
+	.personal-box .info-list {
+		margin-bottom: 4%;
+		height: 38%;
+	}
+	
+	.personal-box .info-list .info-list-icon {
+		height: 100%;
+		text-align: center;
+	}
+	
+	.personal-box .info-list .info-list-icon img {
+		height: 50%;
+		margin-top: 20%;
+	}
+	
+	.personal-box .info-list .info-list-name {
+		height: 100%;
+		display: table;
+		color: #000;
+		text-align: left;
+	}
+	
+	.personal-box .info-list .info-list-name span {
+		display: table-cell;
+		vertical-align: middle;
+	}
+	
+	.personal-box .info-list .info-list-right {
+		height: 100%;
+		text-align: center;
+	}
+	
+	.personal-box .info-list .info-list-right img {
+		height: 20%;
+		margin-top: 81%;
+	}
 </style>
- 

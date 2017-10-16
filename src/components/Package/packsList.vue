@@ -142,7 +142,7 @@
         this.packagsType = res.medicalType; // 项目数据
         this.priceType = res.medicalCost; //获取价格
         this.sexType = res.sex; //获取性别
-        console.error(res);
+        console.log(res);
       })
     },
     components: {

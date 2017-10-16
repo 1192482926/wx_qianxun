@@ -1,9 +1,9 @@
 <template>
 <el-row :gutter="20" class='marginAll paddingBuyTop'>
   <el-col :span="12" v-for='(item,index) in package' v-if='index<4' :key="index">
-    <router-link :to="{path:'detail/id',query:{id:item.id}}">
+    <router-link :to="{path:'PackageDetail/id',query:{id:item.id}}">
       <div class="grid-content bg-purple">
-        <img v-lazy="img+item.image" />
+        <img v-lazy="img+item.image" class='imgHeight' />
       </div>
       <div class='packageText'>
         <span class="packageTextHot">{{item.name}}</span>
@@ -11,6 +11,9 @@
       </div>
     </router-link>
   </el-col>
+   <keep-alive>
+    <router-view ></router-view>
+    </keep-alive>
 </el-row>
 </template>
 
@@ -25,7 +28,7 @@ export default {
       img: this.imgUrlS //图片路径
     }
   },
-  mounted() {
+  created() {
      /** 热门套餐数据 **/
       hotPackage().then(res => {
         console.log(res);

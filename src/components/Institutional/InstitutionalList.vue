@@ -36,7 +36,7 @@
       <el-col :span="24" @click.native="ChooseNatrue(item.name)" v-for='(item,index) in natuerDate' :key='index'   style='text-align: left;padding:20px 0 0 10px;border-bottom:1px #e2e4e5 solid;border-radius: 0'>
         <div class='data'>
           {{item.name}}
-          <i class='icon iconfont  duigou'></i>
+          <i class='icon iconfont  '></i>
           <!-- <i class='icon iconfont icon-duigou1  duigou' ></i> -->
         </div>
       </el-col>
@@ -56,7 +56,7 @@
     name: 'InstitutionalList',
     data() {
       return {
-        type: true, //机构变量
+        type: false, //机构变量
         natuerDate: [], //性质数据
         classStatus: false, // 状态变量
         natrueStatus: false, //性质变量
