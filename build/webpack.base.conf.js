@@ -2,6 +2,7 @@ var path = require('path')
 var utils = require('./utils')
 var config = require('../config')
 var vueLoaderConfig = require('./vue-loader.conf')
+var webpack = require('webpack') // 引入webpack
     //绝对路径
 function resolve(dir) {
     return path.join(__dirname, '..', dir)
@@ -79,5 +80,12 @@ module.exports = {
                 }
             } //所有的字体文件使用url-loader
         ]
-    }
+    },
+    // 增加一个plugins
+    plugins: [
+      new webpack.ProvidePlugin({
+          $: "jquery",
+          jQuery: "jquery"
+      })
+   ]
 }

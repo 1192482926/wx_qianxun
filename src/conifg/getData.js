@@ -79,6 +79,14 @@ export const BooleanLogin = (ph) => fetch('user/checkPhone', {
     // params={"name":$.cookie("name"),"phone":$.cookie("name"),"password":$.cookie("pwd"),"flag":"false"};
 })
 
-/****
- * 注册
- */ 
+/* 提交订单  */
+export const submitOrderNow = () => fetch('selfCenter/submitOrderNow', {
+    type: 'post' 
+})
+
+
+
+
+
+
+

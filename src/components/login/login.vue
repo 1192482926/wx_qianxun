@@ -121,6 +121,7 @@
           this.$cookie.set('pass', this.pass);
           var ph = this.$cookie.get('phone');
           var pass = this.$cookie.get('pass');
+          window.sessionStorage.setItem("user",ph); 
           login(ph, md5(pass)).then(res => {
             if (res.code == "000000") {
               this.$message('登录成功');

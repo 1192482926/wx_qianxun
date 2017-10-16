@@ -119,9 +119,7 @@
             </table>
           </div>
         </el-tab-pane>
-      </el-tabs>
-
-
+      </el-tabs> 
     </div>
     <!-- buyNow -->
     <div class="buyNow" @click='buyNow'>立即购买</div>
@@ -132,8 +130,9 @@
 	import { imgBaseUrl } from '../../conifg/production'
   import {
     packageDetail,
-    mechanismDetail
+    mechanismDetail 
   } from '../../conifg/getData'
+  import {logOn} from '../../conifg/comm.js'
 
   export default {
     name: 'PackageDetail',
@@ -152,17 +151,20 @@
       packageDetail(this.id).then(res => {
         this.packageSDetail = res.model; // 详情套餐数据       
      		localStorage.setItem("packageData",JSON.stringify(res.model));
-        console.log(JSON.stringify(res.model) + '11'); 
+        console.log(JSON.stringify(res.model)); 
       });
-        mechanismDetail(this.id).then(rep => { 
-          this.mechanismSDetail = rep; // 详情套餐数据
-          localStorage.setItem("mechanismData",JSON.stringify(rep));
-              console.log(JSON.stringify(rep));  
-         });
+    	mechanismDetail(this.id).then(rep => { 
+      	this.mechanismSDetail = rep; // 详情套餐数据
+      	localStorage.setItem("mechanismData",JSON.stringify(rep));
+        console.log(JSON.stringify(rep));  
+    	});
+      
     },
     methods: {
-      buyNow() {
-        this.$router.push('/FillOrder');
+      buyNow:function(){ 
+      	if(logOn()!=""){  
+        	this.$router.push('/FillOrder'); 
+       } 
       }
     }
   }

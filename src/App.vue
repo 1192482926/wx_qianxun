@@ -7,7 +7,7 @@
 <script>
 import x_common from '../src/assets/css/x_common.css'
 import f_common from '../src/assets/css/f_common.css'
-import elem_comm from '../src/assets/css/elemCss/elem_comm.css'
+import elem_comm from '../src/assets/css/elemCss/elem_comm.css' 
 export default {
   name: 'app'
 }
